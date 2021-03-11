@@ -1,28 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <style> 
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    height: 100%;
+  }
+  body {
+    height: 100%;
+  }
+  </style> 
+</head>
+<body>
+  <canvas>
+  </canvas>
+  <script>
 
-    <title>Hello!</title>
-    
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
-    <!-- import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
-  </head>  
-  <body>
-    <h1>Hi there!</h1>
-    
-    <p>
-      I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch</a>!
-    </p>
+const canvas = document.querySelector("canvas");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+const ctx = canvas.getContext("2d");
 
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js" defer></script>
-  </body>
+ctx.fillStyle = "#222";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+const rand = n => ~~(Math.random() * n);
+const chunkSize = 133;
+
+ctx.fillStyle = "#000";
+ctx.strokeStyle = "#444";
+//ctx.strokeStyle = "#000";
+//for (let i = -chunkSize / 2; i < canvas.height + chunkSize; i += chunkSize / 4) {
+//  ctx.beginPath();
+//  ctx.moveTo(0, i);
+//  ctx.lineTo(canvas.width, i);
+//  ctx.stroke();
+//}
+ctx.fillStyle = "#000";
+ctx.strokeStyle = "#fff";
+//ctx.strokeStyle = "#000";
+ctx.lineWidth = 1;
+
+for (let i = -chunkSize; i < canvas.height + chunkSize; i += chunkSize) {
+  ctx.beginPath();
+  ctx.moveTo(-chunkSize, i);
+
+  for (let j = -chunkSize, k = 0; j < canvas.width + chunkSize; j += chunkSize, k += chunkSize / 11) {
+    ctx.lineTo(j, i + k);
+    ctx.lineTo(j - 0, i + k + 50);
+  }
+
+  const v = [];
+  for (let j = -chunkSize + 30, k = 0; j < canvas.width + chunkSize; j += chunkSize, k += chunkSize / 11) {
+    v.push([j, i + 100 + k]);
+    v.push([j + 10, i + 100 + k + 50]);
+  }
+  for (const [x, y] of v.reverse()) {
+    ctx.lineTo(x, y);
+  }
+
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+}
+
+const messages = [
+  "BRs",
+  "Claude",
+  "Woobie Cats",
+  "Caterpillar Rubs",
+  "B.O.",
+  "Pizza Box",
+  "Snuggles",
+  "Walks",
+  "Bike Repairs",
+  "Happy 7th Anniversary, Emily!",
+  "Love, Greg",
+  "Owls",
+  "Kale",
+  "Oatmeal",
+  "Capybaras",
+  "Elephants",
+  "Greenland Sharks",
+  "No Sugar Added",
+  "Wilbur",
+  "Fonts",
+  "Popcorn",
+  "Whispers",
+];
+const mainEl = document.querySelector("#main");
+
+ctx.strokeStyle = "#fff";
+ctx.fillStyle = "#fff";
+ctx.rotate(-10 * Math.PI / 180);
+ctx.translate(-chunkSize * 2, -150);
+for (let i = -chunkSize * 2; i < canvas.width + chunkSize; i+= chunkSize) {
+  ctx.save();
+  messages.forEach((e,i) => {
+    ctx.font = '30px monospace';
+    //ctx.fillText(e, 15, i * 40 + 230);
+    ctx.strokeText(e, 15, i * 40 + 230);
+    ctx.translate(30, 0);
+  });
+}
+
+/*
+const cellSize = Math.ceil(Math.max(innerWidth, innerHeight) / 50);
+const grid = [];
+
+for (let i = 0; i < innerHeight; i += cellSize) {
+  const rowEl = document.createElement("tr");
+  grid.push([]);
+  mainEl.appendChild(rowEl);
+  rowEl.classList.add("row");
+
+  for (let j = 0; j < innerWidth; j += cellSize) {
+    const cell = document.createElement("td");
+    rowEl.appendChild(cell);
+    grid[grid.length-1].push(cell);
+    cell.classList.add("cell");
+    cell.style.cssText = `
+      width: ${cellSize}px;
+      height: ${cellSize}px;
+    `;
+  }
+}
+
+const dirs = [[0, 1], [1, 0]];
+const rand = n => ~~(Math.random() * n);
+const choice = a => a[rand(a.length)];
+const snakes = messages.map(text => ({
+  text,
+  y: rand(grid.length),
+  x: rand(grid[0].length),
+  dir: choice(dirs),
+}));
+
+for (const snake of snakes) {
+  const {text, x, y} = snake;
+
+  [...text].forEach((e, i) => {
+    grid[(y+snake.dir[1]*i)%grid.length][(x+snake.dir[0]*i)%grid[0].length].innerText = e;
+
+    //if (rand(4) > 2) {
+    //  snake.dir = choice(dirs);
+    //}
+  });
+}
+*/
+  </script>
+</body>
 </html>
