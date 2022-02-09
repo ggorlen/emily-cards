@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Emily cards :-)</title>
+  <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+  <style> 
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    height: 100%;
+  }
+  body {
+    height: 100%;
+  }
+  </style> 
+</head>
+<body>
+  <canvas>
+  </canvas>
+  <script>
+
+const canvas = document.querySelector("canvas");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+const ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "#222";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+const rand = n => ~~(Math.random() * n);
+const chunkSize = 133;
+
+ctx.fillStyle = "#000";
+ctx.strokeStyle = "#444";
+//ctx.strokeStyle = "#000";
+//for (let i = -chunkSize / 2; i < canvas.height + chunkSize; i += chunkSize / 4) {
+//  ctx.beginPath();
+//  ctx.moveTo(0, i);
+//  ctx.lineTo(canvas.width, i);
+//  ctx.stroke();
+//}
+ctx.fillStyle = "#000";
+ctx.strokeStyle = "#fff";
+//ctx.strokeStyle = "#000";
+ctx.lineWidth = 1;
+
+for (let i = -chunkSize; i < canvas.height + chunkSize; i += chunkSize) {
+  ctx.beginPath();
+  ctx.moveTo(-chunkSize, i);
+
+  for (let j = -chunkSize, k = 0; j < canvas.width + chunkSize; j += chunkSize, k += chunkSize / 11) {
+    ctx.lineTo(j, i + k);
+    ctx.lineTo(j - 0, i + k + 50);
+  }
+
+  const v = [];
+  for (let j = -chunkSize + 30, k = 0; j < canvas.width + chunkSize; j += chunkSize, k += chunkSize / 11) {
+    v.push([j, i + 100 + k]);
+    v.push([j + 10, i + 100 + k + 50]);
+  }
+  for (const [x, y] of v.reverse()) {
+    ctx.lineTo(x, y);
+  }
+
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+}
+
+const messages = [
+  "BRs",
+  "Claude",
+  "Woobie Cats",
+  "Caterpillar Rubs",
+  "B.O.",
+  "Pizza Box",
+  "Snuggles",
+  "Walks",
+  "Bike Repairs",
+  "Happy 7th Anniversary, Emily!",
+  "Love, Greg",
+  "Owls",
+  "Kale",
+  "Oatmeal",
+  "Capybaras",
+  "Elephants",
+  "Greenland Sharks",
+  "No Sugar Added",
+  "Wilbur",
+  "Fonts",
+  "Popcorn",
+  "Whispers",
+];
+const mainEl = document.querySelector("#main");
+
+ctx.strokeStyle = "#fff";
+ctx.fillStyle = "#fff";
+ctx.rotate(-10 * Math.PI / 180);
+ctx.translate(-chunkSize * 2, -150);
+for (let i = -chunkSize * 2; i < canvas.width + chunkSize; i+= chunkSize) {
+  ctx.save();
+  messages.forEach((e,i) => {
+    ctx.font = '30px monospace';
+    //ctx.fillText(e, 15, i * 40 + 230);
+    ctx.strokeText(e, 15, i * 40 + 230);
+    ctx.translate(30, 0);
+  });
+}
+
+/*
+const cellSize = Math.ceil(Math.max(innerWidth, innerHeight) / 50);
+const grid = [];
+
+for (let i = 0; i < innerHeight; i += cellSize) {
+  const rowEl = document.createElement("tr");
+  grid.push([]);
+  mainEl.appendChild(rowEl);
+  rowEl.classList.add("row");
+
+  for (let j = 0; j < innerWidth; j += cellSize) {
+    const cell = document.createElement("td");
+    rowEl.appendChild(cell);
+    grid[grid.length-1].push(cell);
+    cell.classList.add("cell");
+    cell.style.cssText = `
+      width: ${cellSize}px;
+      height: ${cellSize}px;
+    `;
+  }
+}
+
+const dirs = [[0, 1], [1, 0]];
+const rand = n => ~~(Math.random() * n);
+const choice = a => a[rand(a.length)];
+const snakes = messages.map(text => ({
+  text,
+  y: rand(grid.length),
+  x: rand(grid[0].length),
+  dir: choice(dirs),
+}));
+
+for (const snake of snakes) {
+  const {text, x, y} = snake;
+
+  [...text].forEach((e, i) => {
+    grid[(y+snake.dir[1]*i)%grid.length][(x+snake.dir[0]*i)%grid[0].length].innerText = e;
+
+    //if (rand(4) > 2) {
+    //  snake.dir = choice(dirs);
+    //}
+  });
+}
+*/
+  </script>
+</body>
+</html>
