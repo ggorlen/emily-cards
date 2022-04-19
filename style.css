@@ -9,9 +9,8 @@ html {
 body {
   padding: 2em;
   height: 100%;
-  background: black;
-  color: #ddd;
-  font-family: monospace;
+  background: maroon;
+  color: #dddddd;
   font-size: 18pt;
 }
 a,
@@ -19,12 +18,18 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-  color: #f00;
+  color: #000f0f;
 }
 h1, h2, h3 {
   margin-bottom: 1em;
+  font-family: "verdana", sans-serif;
 }
 ul {
   /*list-style: none;*/
   padding: 1em;
+}
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
