@@ -9,8 +9,8 @@ html {
 body {
   padding: 2em;
   height: 100%;
-  background: maroon;
-  color: #dddddd;
+  background: #dedeae;
+  color: #333;
   font-size: 18pt;
 }
 a,
@@ -18,9 +18,11 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-  color: #000f0f;
+  color: #555;
 }
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin-bottom: 1em;
   font-family: "verdana", sans-serif;
 }
