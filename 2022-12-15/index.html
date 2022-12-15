@@ -21,8 +21,7 @@ body {
   font-family: monospace;
   font-size: 16pt;
 }
-  
-  
+    
 </style>
 </head>
 <body>
@@ -32,23 +31,17 @@ body {
   <canvas id="canvas"></canvas>
 <script>
   const canvas = document.getElementById('canvas')
-canvas.width = 400
-canvas.height = 200
+canvas.width = 400;
+canvas.height = 200;
 
-const context = canvas.getContext('2d')
-context.font = 'bold 20px monospace'
-context.fillText('random rects:', 10, 13)
-context.fillText('determined rects:', 10, 90)
+const context = canvas.getContext('2d');
+context.font = 'bold 20px monospace';
+context.fillText('random rects:', 10, 13);
+context.fillText('determined rects:', 10, 90);
 
-const rc = rough.canvas(canvas)
+const rc = rough.canvas(canvas);
 
 
-// random rects
-rc.rectangle(10, 20, 50, 50, { roughness: 2.8 })
-rc.rectangle(80, 20, 50, 50, { roughness: 2.8 })
-rc.rectangle(150, 20, 50, 50, { roughness: 2.8 })
-
-// determined rects, with seed value for each call
 rc.rectangle(10, 100, 50, 50, { seed: 3, roughness: 2.8 })
 rc.rectangle(80, 100, 50, 50, { seed: 3, roughness: 2.8 })
 rc.rectangle(150, 100, 50, 50, { seed: 3, roughness: 2.8 })
