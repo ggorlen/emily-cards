@@ -15,20 +15,47 @@
   body {
     height: 100%;
   }
+    canvas {
+      border: 1px solid red;
+    }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/LingDong-/p5-hershey-js/p5.hershey.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/LingDong-/p5-hershey-js/p5.hershey.data.js"></script>
 </head>
 <body>
+  <!--
   <canvas>
-  </canvas>
+  </canvas>-->
   <script>
 
-    
+/*    
     
 const canvas = document.querySelector("canvas");
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 const ctx = canvas.getContext("2d");
+*/
+function setup() {
+  createCanvas(innerWidth, innerHeight);
+  noLoop();
+}
+
+function draw() {
+  push();
+  translate(width / 2, height / 2);
+  noFill();
+  stroke(0);
+  scale(1.5);
+  strokeWeight(1);
+  P5.hershey.putText("Happy 8th Anniversary, Emily!",{
+    cmap:  FONT_HERSHEY.TRIPLEX,
+    align: "center",
+    //noise: 0,
+  });
+  pop();
+}
+
   </script>
 </body>
 </html>
