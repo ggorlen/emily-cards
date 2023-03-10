@@ -20,23 +20,29 @@
       }
       .coupon {
         background: #f2f2f2;
-        border: 1px solid black;
-        max-width: 150px;
+        border: 1px solid #888;
+        width: 360px;
         position: absolute;
-        left: 0px;
-        height: 500px;
-        top: 30px;
-        padding: 1em;
+        left: -170px;
+        height: 250px;
+        top: -120px;
+        padding-top: 1em;
+        padding-left: 1em;
+        padding-right: 1em;
         display: flex;
+        align-items: center;
         flex-flow: column wrap;
-        align-items: flex-end;
-        justify-content: center;
+        justify-content: flex-end;
         transform: rotate(-45deg);
+      }
+      .coupon p {
+        width: 100px;
+        font-size: 1.1em;
       }
     </style>
   </head>
   <body>
-    <div class="coupon"><h3>Good for one ice cream (participating retailers only)</h3</div>
+    <div class="coupon"><p>Good for one ice cream <small>(participating retailers only)</small></p></div>
     <h2 class="secret">secret project</h2>
     <canvas> </canvas>
     <script>
