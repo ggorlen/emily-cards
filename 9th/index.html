@@ -18,9 +18,25 @@
         box-shadow: 1px 1px 1px 1px solid #f2f2f2;
         text-transform: uppercase;
       }
+      .coupon {
+        background: #f2f2f2;
+        border: 1px solid black;
+        max-width: 150px;
+        position: absolute;
+        left: 0px;
+        height: 500px;
+        top: 30px;
+        padding: 1em;
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-end;
+        justify-content: center;
+        transform: rotate(-45deg);
+      }
     </style>
   </head>
   <body>
+    <div class="coupon"><h3>Good for one ice cream (participating retailers only)</h3</div>
     <h2 class="secret">secret project</h2>
     <canvas> </canvas>
     <script>
@@ -35,10 +51,14 @@
         "Back Rubs",
         "Claude",
         "Story Times",
+        "Dipper",
         "Fog Horns",
         "Walks",
         "Meals",
         "Nuzzling",
+        "Fancy Nancy",
+        "Snuggles",
+        "David Attenborough",
       ];
       const words = "Emily and Greg:  9 Years of  ";
       let currentWords = words + word[0] + "!  ";
@@ -54,7 +74,7 @@
       const update = (t) => {
         //requestAnimationFrame(update);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        let size = 720;
+        let size = Math.min(800, canvas.width / 2); // TODO rough estimate
         let i = 0;
         //let r = rough.canvas(canvas);
         //r.rectangle(0, 0, w, h,
