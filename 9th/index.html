@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Emily + Greg 9th anniversary!</title>
+    <!--<script src="https://unpkg.com/roughjs@4.3.1/bundled/rough.js"></script>-->
+    <style>
+      body {
+        color: #444;
+        background-color: #eee;
+        margin: 0;
+        font-family: monospace;
+      }
+      .secret {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        color: red;
+        box-shadow: 1px 1px 1px 1px solid white;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="secret">secret project</h2>
+    <canvas> </canvas>
+    <script>
+      const canvas = document.querySelector("canvas");
+      canvas.width = document.documentElement.clientWidth;
+      canvas.height = document.documentElement.clientHeight;
+      const ctx = canvas.getContext("2d");
+
+      const rad = (deg) => (deg * Math.PI) / 180;
+      const word = [
+        "Love",
+        "Back Rubs",
+        "Claude",
+        "Story Times",
+        "Fog Horns",
+        "Walks",
+        "Meals",
+        "Nuzzling",
+      ];
+      const words = "Emily and Greg:  9 Years of  ";
+      let currentWords = words + word[0] + "!  ";
+      let j = 0;
+
+      ctx.translate(0.5, 0.5);
+      ctx.textAlign = "center";
+
+      const w = canvas.width;
+      const h = canvas.height;
+      let last = 0;
+      let tt = 0;
+      const update = (t) => {
+        //requestAnimationFrame(update);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let size = 720;
+        let i = 0;
+        //let r = rough.canvas(canvas);
+        //r.rectangle(0, 0, w, h,
+        //{ bowing: 0, //stroke: 'green', strokeWidth: 30,
+        //  fillStyle: "dots",
+        //  roughness: 10,
+        //  fill: '#9ed390',
+        //  fillWeight: 5,
+        //  hachureAngle: 60, // angle of hachure,
+        //  hachureGap: 8,
+        //   strokeWidth: 3
+        //});
+
+        ctx.save();
+        ctx.translate(w / 2, h / 2);
+        //ctx.rotate(rad(tt += (t - last) / 100));
+        last = t;
+
+        for (let a = 0; a < 6960; a += 5) {
+          if (size / 10 < 2) break;
+
+          ctx.save();
+          ctx.font = `${size / 10}px monospace`;
+          ctx.translate(size * Math.cos(rad(a)), size * Math.sin(rad(a)));
+          ctx.rotate(rad(a + 90));
+          ctx.fillText(currentWords[(i = ++i % currentWords.length)], 0, 0);
+
+          if (i === 0) {
+            currentWords = words + word[(j = ++j % word.length)] + "!  ";
+          }
+
+          size -= 1.7;
+          ctx.restore();
+        }
+
+        ctx.restore();
+      };
+
+      requestAnimationFrame(update);
+    </script>
+  </body>
+</html>
