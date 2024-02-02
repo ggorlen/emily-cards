@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="dark light">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>em is 34!</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+<script>
+const r = Math.random;
+const canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+const {width, height} = canvas;
+const ctx = canvas.getContext("2d");
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
+ctx.font = "60pt monospace";
+ctx.lineWidth = 3;
+const text = "Emily is 34!";
+const metrics = ctx.measureText(text);
+const textWidth = metrics.width;
+const textHeight = metrics.actualBoundingBoxDescent;
+
+let x = width / 2;
+let y = height / 2;
+let dx = r();
+let dy = r();
+
+while (dx < 0.3) {
+  dx += r();
+}
+
+while (dy < 0.3) {
+  dy += r();
+}
+
+let h = 0;
+let s = 50;
+let l = 50;
+let ds = r() + 0.1;
+let dl = r() + 0.1;
+
+let sh = 20;
+let ss = 50;
+let sl = 50;
+let sds = r() + 0.1;
+let sdl = r() + 0.1;
+
+(function update() {
+  requestAnimationFrame(update);
+  for (let i = 0; i < 1; i++) {
+  ctx.fillStyle = `hsla(${h}, ${s}%, ${l}%, 0.5)`;
+  ctx.strokeStyle = `hsla(${sh}, ${ss}%, ${sl}%, 0.9)`;
+  ctx.fillText(text, x, y);
+  ctx.strokeText(text, x, y);
+
+  sh += r() / 10;
+  s += ds;
+  l += dl;
+
+  if (s + ds >= 80 || s + ds <= 30) {
+    ds *= -r();
+  }
+
+  if (l + dl >= 80 || l + dl <= 30) {
+    dl *= -r();
+  }
+
+  sh += r() / 10;
+  ss += sds;
+  sl += sdl;
+
+  if (ss + sds >= 80 || ss + sds <= 40) {
+    sds *= -1;
+  }
+
+  if (sl + sdl >= 80 || sl + sdl <= 40) {
+    sdl *= -1;
+  }
+
+  if (x + textWidth / 2 >= width || x <= textWidth / 2) {
+    dx *= -1;
+  }
+
+  if (y + textHeight / 2 >= height || y <= textHeight) {
+    dy *= -1;
+  }
+
+  x += dx;
+  y += dy;
+  }
+})();
+
+</script>
+</body>
+</html>
