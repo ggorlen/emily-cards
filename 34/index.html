@@ -21,6 +21,13 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 const {width, height} = canvas;
 const ctx = canvas.getContext("2d");
+const ops = [
+  "source-over" /* default */,
+  "lighten",
+  "saturation",
+  "luminosity",
+];
+ctx.globalCompositeOperation = ops[~~(r() * ops.length)]
 ctx.textAlign = "center";
 ctx.textBaseline = "middle";
 ctx.font = "60pt monospace";
