@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="color-scheme" content="dark light">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>em is 34!</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-  <style>
-    body {
-      margin: 0;
-    }
-  </style>
-</head>
-<body>
-<script>
-  
-const stuff = [
-  "BRs",
-  "Getting squirted in the eye by grapefruit juice",
-  "Warm snuggles",
-  "Commuting together",
-  "Complaining about reality together",
-  "Minestrone soup",
-  "Going to the farmer's market",
-  "Watching Magnolia together",
-  "Bouldering injuries",
-  "Frank and Phil ripping socks off",
-  "Visiting your family in Sacramento",
-  "Playing SET",
-  ""
-];
-  
-  var sample = () => stuff[~~(Math.random() * stuff.length)];
-  
-let current = sample();
-var lastPos = {x: 0, y: 0};
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>em is 34!</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      div {
+        font-size: 18pt;
+        font-family: "comic sans ms" cursive;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var stuff = [
+        "BRs",
+        "Getting squirted in the eye by grapefruit juice",
+        "Warm snuggles",
+        "Commuting together",
+        "Complaining about reality together",
+        "Minestrone soup",
+        "Going to the farmer's market",
+        "Watching Magnolia together",
+        "Bouldering injuries",
+        "Frank and Phil ripping socks off",
+        "Visiting your family in Sacramento",
+        "Playing SET",
+        "Leif",
+        "Moving with the carts from your job",
+        "Buying iPhones",
+      ];
 
-  document.addEventListener("mousemove", event => {
-    var [x,y] = event.offsetX, event.offsetY]
-    if () {
-      
-    }
-  });
-  
+      // if moving right to left, should reverse the word
 
-</script>
-</body>
+      var dist = (x, y, xx, yy) => ((yy - y) ** 2 + (xx - x) ** 2) ** 0.5;
+      var sample = () => stuff[~~(Math.random() * stuff.length)];
+
+      var current = [...sample()];
+      var lastPos = { x: 0, y: 0 };
+
+      document.addEventListener("mousemove", (event) => {
+        var [x, y] = [event.offsetX, event.offsetY];
+
+        if (dist(x, y, lastPos.x, lastPos.y) > 30) {
+          var letter = x > lastPos.x ? current.shift() : current.pop();
+
+          if (!letter) {
+            current = [...sample()];
+            letter = x > lastPos.x ? current.shift() : current.pop();
+          }
+
+          const div = document.createElement("div");
+          div.style.top = y + "px";
+          div.style.left = x + "px";
+          div.textContent = letter;
+          document.body.appendChild(div);
+          lastPos.x = x;
+          lastPos.y = y;
+        }
+      });
+    </script>
+  </body>
 </html>
