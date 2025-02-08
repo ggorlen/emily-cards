@@ -15,7 +15,7 @@
       }
       div {
         font-size: 18pt;
-        font-family: "comic sans ms" cursive;
+        font-family: "comic sans ms", cursive;
         position: absolute;
       }
     </style>
@@ -38,24 +38,32 @@
         "Leif",
         "Moving with the carts from your job",
         "Buying iPhones",
+        "Going to see Mulholland Drive",
+        "David Lynch",
+        "Comulate holiday party",
+        "Eating tasty food you made",
+        ""
       ];
-
-      // if moving right to left, should reverse the word
+      
+      var items = [];
 
       var dist = (x, y, xx, yy) => ((yy - y) ** 2 + (xx - x) ** 2) ** 0.5;
       var sample = () => stuff[~~(Math.random() * stuff.length)];
 
-      var current = [...sample()];
+      var current = [...sample() + " "];
       var lastPos = { x: 0, y: 0 };
+      
+      // moving up should put letters in opposite order as well
 
       document.addEventListener("mousemove", (event) => {
         var [x, y] = [event.offsetX, event.offsetY];
+        console.log(dist(x, y, lastPos.x, lastPos.y))
 
         if (dist(x, y, lastPos.x, lastPos.y) > 30) {
           var letter = x > lastPos.x ? current.shift() : current.pop();
 
           if (!letter) {
-            current = [...sample()];
+            current = [...sample() + " "];
             letter = x > lastPos.x ? current.shift() : current.pop();
           }
 
@@ -66,6 +74,9 @@
           document.body.appendChild(div);
           lastPos.x = x;
           lastPos.y = y;
+        }
+        else {
+          console.log("HI")
         }
       });
     </script>
