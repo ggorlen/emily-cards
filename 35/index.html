@@ -18,10 +18,29 @@
 const stuff = [
   "BRs",
   "Getting squirted in the eye by grapefruit juice",
+  "Warm snuggles",
+  "Commuting together",
+  "Complaining about reality together",
+  "Minestrone soup",
+  "Going to the farmer's market",
+  "Watching Magnolia together",
+  "Bouldering injuries",
+  "Frank and Phil ripping socks off",
+  "Visiting your family in Sacramento",
+  "Playing SET",
   ""
 ];
   
-  document.addEventListener("mousemove", event => {})
+  var sample = () => stuff[~~(Math.random() * stuff.length)];
+  
+let current = sample();
+var lastPos = {x: 0, y: 0};
+
+  document.addEventListener("mousemove", event => {
+    console.log(event.offsetX, event.offsetY)
+  });
+  
+
 </script>
 </body>
 </html>
