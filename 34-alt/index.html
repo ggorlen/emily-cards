@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+<script>
+const canvas = document.createElement("canvas");
+document.body.append(canvas);
+const ctx = canvas.getContext("2d");
+canvas.width = document.body.offsetWidth;
+canvas.height = document.body.offsetHeight;
+const w = canvas.width;
+const h = canvas.height;
+//ctx.globalCompositeOperation = "difference";
+ctx.fillRect(0, 0, w, h);
+
+for (let i = 1; i <= 5; i++) {
+  for (
+    let x = -Math.random() * 100 - 50;
+    x < w;
+    x += Math.random() * 450 + 70
+  ) {
+    ctx.fillStyle = `hsl(${x / 10}, ${Math.random() * 40 + 40}%, ${i * 10}%)`;
+    const startY = Math.random() * 200 + i * 10;
+    const endY = Math.random() * 100 + i * 10;
+    const offset = Math.random() * 100 - 50;
+    const thickness = Math.random() * 70 + 30;
+    ctx.beginPath();
+    ctx.moveTo(x, startY);
+    ctx.lineTo(x + thickness, startY);
+    ctx.lineTo(x + offset + thickness, canvas.height - endY);
+    ctx.lineTo(x + offset, canvas.height - endY);
+    ctx.closePath();
+    ctx.fill();
+  }
+}
+
+//ctx.fillStyle = "white";
+//ctx.font = "43px Times";
+//ctx.fillText("Happy 34th Birthday, Emily!", 50, 50);
+//ctx.font = "20px Times";
+//ctx.fillText("From Your Friend, Herr Greg", 50, 100);
+//ctx.fill();
+const div = document.createElement("div");
+div.style.position = "absolute";
+div.style.top = "20px";
+div.style.color = "white";
+div.style.textShadow = "1px 1px 1px black";
+div.style.left = "20px";
+div.style.right = "20px";
+const p = document.createElement("p");
+p.style.fontSize = "30pt";
+p.textContent = "Happy 34th Birthday, Emily!";
+div.append(p);
+div.style.maxWidth = "700px";
+document.body.append(div);
+const div1 = document.createElement("div");
+div1.style.fontSize = "16pt";
+div1.innerHTML =
+  "<p>With love from your friend, Herr Greg (der heat stick).</p><p>Thanks for being the most wonderful friend for (almost) 10 years!</p>";
+div.append(div1);
+</script>
+</body>
+</html>
