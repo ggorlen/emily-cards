@@ -18,8 +18,8 @@
         font-family: monospace;
         position: absolute;
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         display: flex;
         justify-content: center;
         align-items: center;   
@@ -83,7 +83,7 @@
       var rand = (n) => ~~(Math.random() * n);
 
       var current = [...sample() + "  "];
-      var history = [current];
+      var historyx = [];
       var currentColor = `hsl(${rand(360)}, ${rand(100)}%, 50%)`;
       var lastPos = { x: 0, y: 0 };
       
@@ -91,14 +91,13 @@
 
       document.addEventListener("mousemove", (event) => {
         var [x, y] = [event.pageX, event.pageY];
-        console.log(dist(x, y, lastPos.x, lastPos.y))
 
         if (dist(x, y, lastPos.x, lastPos.y) > 25) {
           var letter = x > lastPos.x ? current.shift() : current.pop();
 
           if (!letter) {
             current = [...sample() + "  "];
-            currentColor = `hsl(${rand(360)}, ${rand(100)}%, 50%)`;
+            currentColor = `hsl(${rand(360)}, ${rand(100)}%, 40%)`;
             letter = x > lastPos.x ? current.shift() : current.pop();
           }
 
@@ -110,9 +109,10 @@
           document.body.appendChild(div);
           lastPos.x = x;
           lastPos.y = y;
-        }
-        else {
-          console.log("HI")
+          historyx.push(div);
+          if (historyx.length > 100) {
+            historyx.shift().remove();
+          }
         }
       });
     </script>
