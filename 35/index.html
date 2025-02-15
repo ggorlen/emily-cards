@@ -15,8 +15,14 @@
       }
       div {
         font-size: 18pt;
-        font-family: "comic sans ms", cursive;
+        font-family: monospace;
         position: absolute;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;   
       }
     </style>
   </head>
@@ -26,11 +32,11 @@
         "BRs (of course)",
         "Getting squirted in the eye by grapefruit juice",
         "Warm snuggles 💏",
-        "Commuting together",
-        "Complaining about reality together",
+        "Commuting",
+        "Complaining about reality",
         "Minestrone soup",
         "Going to the farmer's market",
-        "Watching Magnolia together",
+        "Watching Magnolia",
         "Bouldering injuries",
         "Frank and Phil ripping socks off",
         "Visiting your family in Sacramento",
@@ -44,8 +50,8 @@
         "Eating tasty food you made",
         "Singing annoying Emily songs!",
         "Claude asking questions 🦀 ❔",
-        "Visiting Santa Cruz and hiking the trails together",
-        "Reading Thomas Bernhard books together",
+        "Visiting Santa Cruz and hiking the trails",
+        "Reading Thomas Bernhard books",
         "Kangarooing when you get home",
         "Forehead on cheek",
         "Cattywumpus woobies",
@@ -56,42 +62,43 @@
         "Toe kisses",
         "Exchanging emails when we're at work",
         "Underwater sea cables",
-        "Caterpillaring together",
+        "Caterpillaring",
         "Running into each other on the bus",
         "Running into each other at the goats",
-        "Listening to mourning doves together",
+        "Listening to mourning doves",
         "Visiting Mr. Floofkins and Coco",
         "Making drool art",
         "Hippo flossing time",
-        
+        "Stretching"
       ];
       
-      // do put colored circles behind each letter
       var items = [];
 
       var dist = (x, y, xx, yy) => ((yy - y) ** 2 + (xx - x) ** 2) ** 0.5;
       var sample = () => stuff[~~(Math.random() * stuff.length)];
+      var rand = (n) => ~~(Math.random() * n);
 
-      var current = [...sample() + " "];
+      var current = [...sample() + "  "];
       var lastPos = { x: 0, y: 0 };
       
-      // moving up should put letters in opposite order as well
+      // moving up and to the right should put letters in opposite order as well
 
       document.addEventListener("mousemove", (event) => {
-        var [x, y] = [event.offsetX, event.offsetY];
+        var [x, y] = [event.pageX, event.pageY];
         console.log(dist(x, y, lastPos.x, lastPos.y))
 
-        if (dist(x, y, lastPos.x, lastPos.y) > 30) {
+        if (dist(x, y, lastPos.x, lastPos.y) > 25) {
           var letter = x > lastPos.x ? current.shift() : current.pop();
 
           if (!letter) {
-            current = [...sample() + " "];
+            current = [...sample() + "  "];
             letter = x > lastPos.x ? current.shift() : current.pop();
           }
 
           const div = document.createElement("div");
           div.style.top = y + "px";
           div.style.left = x + "px";
+          div.style.background = `hsl(${rand(360)}, ${rand(100)}, 50%)`;
           div.textContent = letter;
           document.body.appendChild(div);
           lastPos.x = x;
