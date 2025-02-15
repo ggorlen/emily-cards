@@ -69,7 +69,11 @@
         "Visiting Mr. Floofkins and Coco",
         "Making drool art",
         "Hippo flossing time",
-        "Stretching"
+        "Stretching",
+        "Doing the laundry",
+        "Visting the library",
+        "Mushroom risotto",
+        "Tasty Emily curries!",
       ];
       
       var items = [];
@@ -79,6 +83,8 @@
       var rand = (n) => ~~(Math.random() * n);
 
       var current = [...sample() + "  "];
+      var history = [current];
+      var currentColor = `hsl(${rand(360)}, ${rand(100)}%, 50%)`;
       var lastPos = { x: 0, y: 0 };
       
       // moving up and to the right should put letters in opposite order as well
@@ -92,14 +98,15 @@
 
           if (!letter) {
             current = [...sample() + "  "];
+            currentColor = `hsl(${rand(360)}, ${rand(100)}%, 50%)`;
             letter = x > lastPos.x ? current.shift() : current.pop();
           }
 
           const div = document.createElement("div");
           div.style.top = y + "px";
           div.style.left = x + "px";
-          div.style.background = `hsl(${rand(360)}, ${rand(100)}, 50%)`;
-          div.textContent = letter;
+          div.style.background = letter !== " " ? currentColor : "";
+          div.textContent = letter === "_" ? " " : letter;
           document.body.appendChild(div);
           lastPos.x = x;
           lastPos.y = y;
