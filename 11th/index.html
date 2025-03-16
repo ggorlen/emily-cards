@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="description" content="ggorlen.github.io">
-    <meta name="color-scheme" content="dark light">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta charset="utf-8" />
+    <meta name="description" content="ggorlen.github.io" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>11th!</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <style>
-* {
-  box-sizing: border-box;
+      * {
+        box-sizing: border-box;
 
         margin: 0;
         padding: 0;
-}
-      input[type='checkbox'] {
+      }
+      input[type="checkbox"] {
         position: absolute;
         width: 15px;
         height: 15px;
       }
 
-      html, body {
+      html,
+      body {
         width: 100%;
         height: 100%;
       }
 
-#container {
-  width:100%;
-  height:100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#output{ 
-  width:100%;
-  height:100%;
-  position:relative;
-}
+      #container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #output {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
     </style>
   </head>
   <body>
@@ -44,7 +45,7 @@
       <div id="output"></div>
     </div>
     <!-- https://chatgpt.com/c/67ce66db-47b4-8012-b429-a75662582d00 -->
-    <canvas id="canvas" style="display: none;"></canvas>
+    <canvas id="canvas" style="display: none"></canvas>
     <script>
 const data = [
   "111111111111111111111111111111111111111111111111111111111111111111111",
@@ -115,92 +116,91 @@ const data = [
   "111111111111111111111111111111111111111111111111111111111111111111111",
   "111111111111111111111111111111111111111111111111111111111111111111111",
   "111111111111111111111111111111111111111111111111111111111111111111111",
-  "111111111111111111111111111111111111111111111111111111111111111111111"
+  "111111111111111111111111111111111111111111111111111111111111111111111",
 ];
-      const imageUrl = "http://localhost:8000/x.webp"; // Replace with your image URL
-      const threshold = 125; // Brightness threshold
-      const checkboxSize = 15;
+const imageUrl = "http://localhost:8000/x.webp"; // Replace with your image URL
+const threshold = 125; // Brightness threshold
+const checkboxSize = 15;
 
-      function loadImage(url) {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.crossOrigin = "Anonymous"; // Enable cross-origin for external images
-          img.onload = () => resolve(img);
-          img.onerror = reject;
-          img.src = url;
-        });
-      }
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "Anonymous"; // Enable cross-origin for external images
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = url;
+  });
+}
 
-      async function processImage() {
-        const img = await loadImage(imageUrl);
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
+async function processImage() {
+  const img = await loadImage(imageUrl);
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
 
-        // Set canvas size to match the image
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
+  // Set canvas size to match the image
+  canvas.width = img.width;
+  canvas.height = img.height;
+  ctx.drawImage(img, 0, 0);
 
-        // Get image pixel data
-        const imageData = ctx.getImageData(0, 0, img.width, img.height);
-        const pixels = imageData.data;
+  // Get image pixel data
+  const imageData = ctx.getImageData(0, 0, img.width, img.height);
+  const pixels = imageData.data;
 
-        const a = [];
-        for (let y = 0; y < img.height; y += checkboxSize) {
-          a.push([])
-          for (let x = 0; x < img.width; x += checkboxSize) {
-            const index = (y * img.width + x) * 4;
-            const r = pixels[index];
-            const g = pixels[index + 1];
-            const b = pixels[index + 2];
+  const a = [];
+  for (let y = 0; y < img.height; y += checkboxSize) {
+    a.push([]);
+    for (let x = 0; x < img.width; x += checkboxSize) {
+      const index = (y * img.width + x) * 4;
+      const r = pixels[index];
+      const g = pixels[index + 1];
+      const b = pixels[index + 2];
 
-            // Calculate brightness (grayscale approximation)
-            const brightness = (r + g + b) / 3;
+      // Calculate brightness (grayscale approximation)
+      const brightness = (r + g + b) / 3;
 
-            const cb = document.createElement("input");
-            cb.type = "checkbox";
-            cb.style.top = y + "px";
-            cb.style.left = x + "px";
-            cb.checked = brightness < threshold;
-            a.at(-1).push(brightness < threshold ? 0 : 1)
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.style.top = y + "px";
+      cb.style.left = x + "px";
+      cb.checked = brightness < threshold;
+      a.at(-1).push(brightness < threshold ? 0 : 1);
 
-            document.body.append(cb);
-          }
-        }
-        console.log(a.map(e => e.join("")))
-      }
-      // processImage(); // just done to generate the data array
-      const output = document.querySelector("#output")
+      document.body.append(cb);
+    }
+  }
+  console.log(a.map((e) => e.join("")));
+}
+// processImage(); // just done to generate the data array
+const output = document.querySelector("#output");
 
-      function drawImage() {
-        for (let y = 0; y < data.length; y++) {
-          for (let x = 0; x < data[y].length; x++) {
-            const cb = document.createElement("input");
-            cb.type = "checkbox";
-            cb.style.top = (y * checkboxSize) + "px";
-            cb.style.left = (x * checkboxSize) + "px";
-            cb.checked = data[y][x] === "1";            
-            cb.onmouseenter = () => {
-              if (!mouseDown) return;
-              cb.checked = !cb.checked;
-            }
-            output.append(cb);
-          }
-        }
-      }
-      output.style.width = (data[0].length * checkboxSize) + "px"
-      output.style.height = (Math.min(data.length * checkboxSize, innerHeight)) + "px"
+function drawImage() {
+  for (let y = 0; y < data.length; y++) {
+    for (let x = 0; x < data[y].length; x++) {
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.style.top = y * checkboxSize + "px";
+      cb.style.left = x * checkboxSize + "px";
+      cb.checked = data[y][x] === "1";
+      cb.onmouseenter = () => {
+        if (!mouseDown) return;
+        cb.checked = !cb.checked;
+      };
+      output.append(cb);
+    }
+  }
+}
+output.style.width = data[0].length * checkboxSize + "px";
+output.style.height =
+  Math.min(data.length * checkboxSize, innerHeight) + "px";
 
-      drawImage();
-      let mouseDown = false;
-      document.addEventListener("mousedown", () => {
-        mouseDown = true;
-      })
-      document.addEventListener("mouseup", () => {
-        mouseDown = false;
-      })
-
+drawImage();
+let mouseDown = false;
+document.addEventListener("mousedown", () => {
+  mouseDown = true;
+});
+document.addEventListener("mouseup", () => {
+  mouseDown = false;
+});
     </script>
   </body>
 </html>
-
