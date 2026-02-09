@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Emily is THIRTY SIX!!!</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="https://fav.farm/❤️"  />
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    const MAX_DIALOGS = 20;
+
+    const messages = [
+      "<h3>Emily is 36!!!!!! Happy birthday!!!</h3>",
+      '<a target="_blank" href="https://en.wikipedia.org/wiki/List_of_individual_trees">list of individual trees</a>',
+      "Eatin' dosas together at Udupi! ❤️ ",
+      "We've been the best of friends for 12 years",
+      "Hans says he loves you!",
+      "Holding Hans",
+      "Emily, singer of Disney songs!",
+      "Emily is my best friend!!!",
+      "Mmmmmmmm... Emily the baker's bread is the best!",
+      "Emily makes super GREAT food",
+      "Click OK if you like Emily",
+      "All maroon outfits!",
+      "Cool EBM sunglasses!",
+      "Emily has a super cool elephant dress.",
+      "It is fun to do haircuts together.",
+      "Claude, Doug + Bumble. Awesome!!",
+      "Droolin' on the woobies",
+      "Achooo! Allergy season. Dammit.",
+      "Emily, appreciator of animals",
+      "Emily, appreciator of slugs",
+      "Emily, appreciator of music",
+      "Berkeley lover!",
+      "Devouring burgers together at Saturn Cafe!!",
+      "Emily hitting the mosh pit at the hardcore show",
+      "Emily, wiper of walls and tough cookie through cramps, UCL tears and tennis elbow/shoulder",
+      "Emily, not a fan of staying up late. She'll turn into a zombie around 10 PM and get cranky.",
+      "Getting pesto stuck in your teeth (but not so much any longer)",
+      "Keep your crystals aligned",
+      "Foghorning during BRs",
+      "Enjoyer of whispers (back + arm varieties)",
+      "Having a good time visiting animals at the Randall museum",
+      "Having a good time visiting animals at the Marine Mammal Center",
+      "Advocate of safer, better cities",
+      "Getting warm together in the woobies",
+      "Taking walks together",
+      "Commuting together!",
+      "Analyzing shit together!",
+      "Doing Epic Robin Greenfield-style hugs!",
+      "Capybaras!",
+      "Mourning Doves!",
+      "Squeaky hummingbirds!",
+      "Petey the squirrel!",
+      "Owls!",
+      "Grumpy monster making friends with asian pears!",
+      "Pacific chorus frogs!",
+      "Hiking in Marin!",
+      "Emily, maker of tasty dinners, cornbread and other yummables",
+      "Emily, the best salad maker, teaching me how to whisk it right.",
+      "Emily, enforcer of code, filer of record requests (and many other things to keep the city running)",
+      "Emily is the biggest fan of health food coops",
+      "Emily, appreciator of kumquats, figs, dates, and other seasonal fruit",
+      "Emily, saver of food rejects, turning food waste into tasty treats like dumpster crisp.",
+      "Emily is not a fan of bananas, but loves banana slugs and makes a mean banana bread!",
+      "Emily, reader of vegan philosophy books",
+      "Emily, avid explorer of highways, byways and trails of the Presidio. Always on the hunt for tasty blackberries and cherry plums.",
+      "Hi Emily!!! Hope you're having a great brithday, or whatever day you're looking at this on!",
+      "WoOOOOEOEOEOEOEOeoeoeoeo",
+      "HIIIIIIIIIIIIII EMILY!!!",
+      "Emily, appreciator of all kinds of art, cinema and music",
+      "Emily has many cool hobbies. Mostly cooking but also photography, writing, reading, and appreciating DIY stuff.",
+      "I enjoy texting you on Google Voice when we're at work... wheee! a text from Em!",
+      "Doing things the hard way walking home from Autechre (Oktoberfest edition)",
+      "Living room dance parties, jumping jacks. We gotta get back into bike runs.",
+      "Em, a huge fan of DUCKS!",
+      "Em, a lover of BERKELEY",
+      "Choo-Chooガタゴト",
+      "DUGONG!!!",
+      "Checking out cats in the window, like Reynold! Not to mention Coco + Mr. Floofkins of course.",
+      "Emily, huge fan of all things fermentation, but less kombucha thanks to headaches. No paw print on headaches",
+      "Emily thinks insects are neat, especially spiders",
+      "Mr. Floofkins. Hopefully we'll see him again someday.",
+      "Twinkie, RIP. Forever in the tall grasses, relaxing in the sunshine.",
+      "Emily's THIRTY SIX! Still looking fantastic!",
+      "Freezing our butts off in Sacramento together!!",
+      "Emily, huge fan of Santa Cruz hiking trails.",
+      "Pelican dreams.. 💤",
+    ];
+
+    const wallpapers = [
+'https://upload.wikimedia.org/wikipedia/commons/e/e1/Cattle_tyrant_%28Machetornis_rixosa%29_on_Capybara.jpg',
+'https://upload.wikimedia.org/wikipedia/commons/3/34/Hydrochoeris_hydrochaeris_in_Brazil_in_Petr%C3%B3polis%2C_Rio_de_Janeiro%2C_Brazil_09.jpg',
+'https://upload.wikimedia.org/wikipedia/commons/9/96/Capybara_Eating_Hay_11_11_2018.jpg',
+'https://upload.wikimedia.org/wikipedia/commons/9/99/Capivara%28Hydrochoerus_hydrochaeris%29.jpg',
+'https://upload.wikimedia.org/wikipedia/commons/6/65/Vervet_monkey_with_young.jpg',
+    ];
+
+    let clickCount = 0;
+    let wallpaperIndex = ~~(Math.random() * wallpapers.length);
+    let dialogCount = 0;
+
+    function setWallpaper() {
+      document.body.style.backgroundImage =
+        `url("${wallpapers[wallpaperIndex]}")`;
+    }
+    setWallpaper();
+
+    function randomFrom(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    }
+
+    function randomPosition(el) {
+      const padding = 20;
+      const x = Math.random() * (window.innerWidth - el.offsetWidth - padding);
+      const y = Math.random() * (window.innerHeight - el.offsetHeight - padding);
+      el.style.left = `${Math.max(0, x)}px`;
+      el.style.top = `${Math.max(0, y)}px`;
+    }
+
+    function spawnDialog(i) {
+      if (dialogCount >= MAX_DIALOGS) return;
+
+      const dialog = document.createElement("div");
+      dialog.className = "window";
+      dialog.style.position = "absolute";
+      dialog.style.width = "260px";
+
+      const types = [
+        "Cuddly", "Deluxe", "Windows", "Fabuously", "Fantastical",
+        "Mindblowing", "Stupendous", "Loving", "Lovable", "Squeezable",
+        "Warm", "Soft", "Friend", "My Pal", "Serious Roommate",
+        "Great buddy", "Bubby for life", "The Excellent", "Grumpy Monster",
+        "Beautiful", "Marvelous", 
+      ];
+
+      const confirms = ["OK", "OK", "OK", "You bet!", "Right-o", "Sure", "Yes!", "Okay", "We're aligned", "kk", "Got it", "Je suis d’accord", "yeppo", "OK", "ok", "Boom!", "Bam!", "Dismiss", "Close dialog"];
+      const conf = confirms[~~(Math.random() * confirms.length)];
+
+      const t = Math.random() > 0.8 ? (types[~~(Math.random() * types.length)] + " ") : "";
+
+      dialog.innerHTML = `
+        <div class="title-bar">
+          <div class="title-bar-text">${t}Emily Alert</div>
+        </div>
+        <div class="window-body">
+          <p>${messages[i] || randomFrom(messages)}</p>
+          <div class="field-row" style="justify-content: flex-end">
+            <button>${conf}</button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(dialog);
+      randomPosition(dialog);
+      dialogCount++;
+
+      dialog.querySelector("button").addEventListener("click", () => {
+        dialog.remove();
+        dialogCount--;
+        handleClick();
+      });
+    }
+
+    function handleClick() {
+      clickCount++;
+    
+      const available = MAX_DIALOGS - dialogCount;
+    
+      // spawn 0–3 by default
+      let toSpawn = Math.floor(Math.random() * 4);
+    
+      // if we just closed the last dialog, force at least 1
+      if (dialogCount === 0) {
+        toSpawn = Math.max(toSpawn, 1);
+      }
+    
+      // never exceed the max
+      toSpawn = Math.min(toSpawn, available);
+    
+      for (let i = 0; i < toSpawn; i++) {
+        spawnDialog();
+      }
+    }
+
+    // init
+    setWallpaper();
+    spawnDialog(0);
+  </script>
+</body>
+</html>
+
