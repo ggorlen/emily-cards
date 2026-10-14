@@ -1,37 +1,7 @@
-Welcome to Glitch
-=================
+# emily-cards
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
-
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
-
-Find out more [about Glitch](https://glitch.com/about).
-
-
-Your Project
-------------
-
-### ← README.md
-
-That's this file, where you can tell people what your cool website does and how you built it.
-
-### ← index.html
-
-Where you'll write the content of your website. 
-
-### ← style.css
-
-CSS files add styling rules to your content.
-
-### ← script.js
-
-If you're feeling fancy you can add interactivity to your site with JavaScript.
-
-### ← assets
-
-Drag in `assets`, like images or music, to add them to your project
-
-Made by [Glitch](https://glitch.com/)
--------------------
-
-\ ゜o゜)ノ
+- wrap up emily cards: https://chatgpt.com/c/69b02b39-2fb8-8326-876c-86e10fd69a1e
+- get emily halva from the olive store near 4th and clement (too much plastic) and make her an animation or web page, blue heron t-shirt, donation on her behalf, https://www.shared-cultures.com/, get ibuprophen, anniversary card with rough.js
+- emily anniversary card: can use screenshots of claude on emily's head -- snake eating egg, get something fun for her, stinky countertop, scan from book, list of good stuff we like, dried leaf or flower or rock, aquarium animation like the library except with capybaras
+- bike animation for emily, matter.js idea: 'emily' in hollow SVG, then put balls/shapes around it
+- recreate the first emily card, which was big blocky "EMILY" text stacked up like neocities background, with a wavy pattern behind it, and i think a "sticker" in the top right corner that said something, not sure what. maybe "secret project" or the birthday year or something
