@@ -5,3 +5,4 @@
 - emily anniversary card: can use screenshots of claude on emily's head -- snake eating egg, get something fun for her, stinky countertop, scan from book, list of good stuff we like, dried leaf or flower or rock, aquarium animation like the library except with capybaras
 - bike animation for emily, matter.js idea: 'emily' in hollow SVG, then put balls/shapes around it
 - recreate the first emily card, which was big blocky "EMILY" text stacked up like neocities background, with a wavy pattern behind it, and i think a "sticker" in the top right corner that said something, not sure what. maybe "secret project" or the birthday year or something
+- improve file:///Users/ggorlen/Documents/emily-cards/36/index.html
